@@ -1,16 +1,12 @@
 language: perl
 
 perl:
+  - "5.8"
   - "5.10"
+  - "5.12"
 
 services:
   - memcached
-
-env:
-  matrix:
-    - FILES="t/??-*.t t/[^0-9]*.t plugins/*/t"
-    - FILES="t/1??-*.t"
-    - FILES="t/2??-*.t"
 
 before_install:
   # Install Berkeley DB for installing DB_File module.
@@ -47,5 +43,5 @@ before_script:
   - cp ./t/mysql-test.cfg ./mt-config.cgi
 
 script:
-  - prove ${FILES}
+  - "prove ./t ./plugins/*/t"
 
